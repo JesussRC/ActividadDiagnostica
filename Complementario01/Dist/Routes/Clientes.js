@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.router = void 0;
+const express_1 = require("express");
+const express_validator_1 = require("express-validator");
+const Index_1 = require("../Controllers/Index");
+const { obtenerClientes, obtenerCliente, crearCliente, actualizarCliente, borrarCliente, recuperarCliente } = Index_1.Cliente;
+const router = (0, express_1.Router)();
+exports.router = router;
+router.get('/', obtenerClientes);
+router.get('/:CLIENTE_ID', obtenerCliente);
+router.post('/', [(0, express_validator_1.check)('id', 'ID es obligatorio').not().isEmpty()], crearCliente);
+router.put('/:CLIENTE_ID', actualizarCliente);
+router.delete('/:CLIENTE_ID', borrarCliente);
+router.put('/RecuperarCliente/:CLIENTE_ID', recuperarCliente);
